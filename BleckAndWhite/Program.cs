@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace ZMEIKKA
            do
            {
                 XYI.Figura_vibor();
-                //XYI.AI_Figura_vibor();
+                XYI.AI_Figura_vibor();
            } while (true);
         }
     }
