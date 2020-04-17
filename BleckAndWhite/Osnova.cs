@@ -129,7 +129,7 @@ namespace ZMEIKKA
         }
         private void Pehuia_i()
         {
-           /* int j = 0;
+            int j = 0;
             do
             {
                 mKey = Console.ReadKey(true);
@@ -227,7 +227,7 @@ namespace ZMEIKKA
                          Console.BackgroundColor = ConsoleColor.Black;
                          Console.Write(mass[y, (x - Z)]);
                      }
-                 }*/
+                 }
             
         }
         private void Kanina_i()
