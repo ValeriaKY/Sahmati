@@ -129,7 +129,7 @@ namespace ZMEIKKA
         }
         private void Pehuia_i()
         {
-           /* int j = 0;
+            int j = 0;
             do
             {
                 mKey = Console.ReadKey(true);
@@ -227,7 +227,7 @@ namespace ZMEIKKA
                          Console.BackgroundColor = ConsoleColor.Black;
                          Console.Write(mass[y, (x - Z)]);
                      }
-                 }*/
+                 }
             
         }
         private void Kanina_i()
@@ -1858,7 +1858,7 @@ namespace ZMEIKKA
                                     int lineHorse, columHorse; //lineHorse-строка columHorse2-столбец
                                     lineHorse = g;//y
                                     Z_old = i;
-                                    columHorse = i * 2;//x
+                                    columHorse = i * 2;///x
                                     for (int p = 0; i < 8; i++)
                                     {
                                         if (p == 0 && block_1 == true)
