@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -129,66 +129,46 @@ namespace ZMEIKKA
         }
         private void Pehuia_i()
         {
-            if (Proverka_i() == true)
+           /* int j = 0;
+            do
             {
-                if (x == 0 && y == 6 || x == 2 && y == 6 || x == 4 && y == 6 || x == 6 && y == 6 || x == 8 && y == 6 || x == 10 && y == 6 || x == 12 && y == 6 || x == 14 && y == 6)
-                {
-                    int j = 0;
+                mKey = Console.ReadKey(true);
+                int add,x_p,y_p;
+                 if (x == 0 && y == 6 || x == 2 && y == 6 || x == 4 && y == 6 || x == 6 && y == 6 || x == 8 && y == 6 || x == 10 && y == 6 || x == 12 && y == 6 || x == 14 && y == 6)
+                 {
                     do
                     {
                         mKey = Console.ReadKey(true);
                         switch (mKey.Key)
                         {
                             case ConsoleKey.W:
-                                if (y > 0 && j < 2) //Ебать в перед
+                                if (y > 0)
                                 {
-                                    if ((((x - Z) + y) % 2) != 0)
-                                    { Console.BackgroundColor = ConsoleColor.Black; }
-                                    else
-                                    { Console.BackgroundColor = ConsoleColor.White; }
-                                    mass[y, (x - Z)] = "  ";
-                                    Console.SetCursorPosition(x, y);
-                                    Console.Write(mass[y, (x - Z)]);
                                     y--;
                                     Console.SetCursorPosition(x, y);
-                                    mass[y, (x - Z)] = "\u2659 ";
-                                    if ((((x - Z) + y) % 2) == 0)
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.White;
-                                        Console.Write(mass[y, (x - Z)]);
-                                    }
-                                    else
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.Black;
-                                        Console.Write(mass[y, (x - Z)]);
-                                    }
-                                    j++;
+                                }
+                                break;
+                            case ConsoleKey.A:
+                                if (x > 0)
+                                {
+                                    x = x - 2;
+                                    Console.SetCursorPosition(x, y);
+                                    Z--;
                                 }
                                 break;
                             case ConsoleKey.S:
-                                if (y < 7 && j > 0) // Ебать в зад
+                                if (y < 7)
                                 {
-                                    if ((((x - Z) + y) % 2) != 0)
-                                    { Console.BackgroundColor = ConsoleColor.Black; }
-                                    else
-                                    { Console.BackgroundColor = ConsoleColor.White; }
-                                    mass[y, (x - Z)] = "  ";
-                                    Console.SetCursorPosition(x, y);
-                                    Console.Write(mass[y, (x - Z)]);
                                     y++;
                                     Console.SetCursorPosition(x, y);
-                                    mass[y, (x - Z)] = "\u2659 ";
-                                    if ((((x - Z) + y) % 2) == 0)
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.White;
-                                        Console.Write(mass[y, (x - Z)]);
-                                    }
-                                    else
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.Black;
-                                        Console.Write(mass[y, (x - Z)]);
-                                    }
-                                    j--;
+                                }
+                                break;
+                            case ConsoleKey.D:
+                                if (x < 7 * 2)
+                                {
+                                    x = x + 2;
+                                    Console.SetCursorPosition(x, y);
+                                    Z++;
                                 }
                                 break;
                             default:
@@ -196,30 +176,59 @@ namespace ZMEIKKA
                         }
                     } while (mKey.Key != ConsoleKey.Enter);
                 }
-                else
+                 else
+                 {
+                     add = 1;
+                 }
+                if (Proverka_AI(AI_x, AI_y, AI_reserve) == true)
                 {
-                    if ((((x - Z) + y) % 2) != 0)
+                    if (((AI_reserve + AI_y) % 2) != 0)
                     { Console.BackgroundColor = ConsoleColor.Black; }
                     else
                     { Console.BackgroundColor = ConsoleColor.White; }
-                    mass[y, (x - Z)] = "  ";
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(mass[y, (x - Z)]);
-                    y--;
-                    Console.SetCursorPosition(x, y);
-                    mass[y, (x - Z)] = "\u2659 ";
-                    if ((((x - Z) + y) % 2) == 0)
+                    mass[AI_y, AI_reserve] = "  ";
+                    Console.SetCursorPosition(AI_x, AI_y);
+                    Console.Write(mass[AI_y, AI_reserve]);
+                    AI_y += add;
+                    Console.SetCursorPosition(AI_x, AI_y);
+                    mass[AI_y, AI_reserve] = "\u265F ";
+                    if (((AI_reserve + AI_y) % 2) == 0)
                     {
                         Console.BackgroundColor = ConsoleColor.White;
-                        Console.Write(mass[y, (x - Z)]);
+                        Console.Write(mass[AI_y, AI_reserve]);
                     }
                     else
                     {
                         Console.BackgroundColor = ConsoleColor.Black;
-                        Console.Write(mass[y, (x - Z)]);
+                        Console.Write(mass[AI_y, AI_reserve]);
                     }
                 }
-            }
+            } while (mKey.Key != ConsoleKey.Enter) ;
+
+                 else
+                 {
+                     if ((((x - Z) + y) % 2) != 0)
+                     { Console.BackgroundColor = ConsoleColor.Black; }
+                     else
+                     { Console.BackgroundColor = ConsoleColor.White; }
+                     mass[y, (x - Z)] = "  ";
+                     Console.SetCursorPosition(x, y);
+                     Console.Write(mass[y, (x - Z)]);
+                     y--;
+                     Console.SetCursorPosition(x, y);
+                     mass[y, (x - Z)] = "\u2659 ";
+                     if ((((x - Z) + y) % 2) == 0)
+                     {
+                         Console.BackgroundColor = ConsoleColor.White;
+                         Console.Write(mass[y, (x - Z)]);
+                     }
+                     else
+                     {
+                         Console.BackgroundColor = ConsoleColor.Black;
+                         Console.Write(mass[y, (x - Z)]);
+                     }
+                 }*/
+            
         }
         private void Kanina_i()
         {
@@ -744,7 +753,6 @@ namespace ZMEIKKA
         private void Slon_AI(int AI_x, int AI_y, int AI_reserve)
         {
             int lineelEphant, columelEphant, linePos, columPos;//lineelEphant-строка columelEphant2-столбец
-
             lineelEphant = AI_y;
             columelEphant = AI_x;
             int Z_old = AI_reserve;
@@ -909,7 +917,6 @@ namespace ZMEIKKA
                 }
             } while (i == 0);
         }
-
         private bool Proverka_AI(int AI_x, int AI_y, int AI_Z)
         {
             bool Vilat = false;
@@ -982,159 +989,992 @@ namespace ZMEIKKA
                 Console.WriteLine("Конец игры вы победили");
             }
         }
-        private bool Vacsina(int AI_x,int AI_y, int AI_reserve)
+        private bool Vacsina(int AI_x, int AI_y, int AI_reserve)
         {
             bool Game = false;
             if (Game == false)
             {
-               var block_1 = true;
-                var block_2 = true;
-                var block_3 = true;
-                var block_4 = true;
-                var block_5= true;
-                var block_6 = true;
-                var block_7 = true;
-                var block_8 = true;
-                for (int i = 0; i < 8; i++)
+                if (mass[AI_x, AI_y] == "\u2654 ")
                 {
-                    for (int g = 0; g < 8; g++)
+                    var block_1 = true;
+                    var block_2 = true;
+                    var block_3 = true;
+                    var block_4 = true;
+                    var block_5 = true;
+                    var block_6 = true;
+                    var block_7 = true;
+                    var block_8 = true;
+                    for (int i = 0; i < 8; i++)
                     {
-                        switch (mass[i, g])
+                        for (int g = 0; g < 8; g++)
                         {
-                            case "\u2659 ":
-                                ;
-                                break;//Пешка
-                            case "\u2658 ":
-                                int lineHorse, columHorse, linePos, columPos;//lineHorse-строка columHorse2-столбец
-                                lineHorse = g;//y
-                                int Z_old = i;
-                                columHorse = i*2;//x
-                                int Z_New;
-                                for (int p = 0; i < 8; i++)
-                                {
-                                    if (p == 0 && block_1==true)
+                            switch (mass[i, g])
+                            {
+                                case "\u2659 ":
+                                    ;
+                                    break;//Пешка
+                                case "\u2658 ":
+                                    int lineHorse, columHorse, linePos, columPos;//lineHorse-строка columHorse2-столбец
+                                    lineHorse = g;//y
+                                    int Z_old = i;
+                                    columHorse = i * 2;//x
+                                    int Z_New;
+                                    for (int p = 0; i < 8; i++)
                                     {
-                                        AI_reserve = AI_x;
-                                        linePos = AI_y-1;
-                                        AI_x = AI_x * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else if(p==1 && block_2 == true)
-                                    {
-                                        AI_reserve = AI_x+1;
-                                        linePos = AI_y - 1;
-                                        AI_x = (AI_x+1) * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else if (p == 2 && block_3 == true)
-                                    {
-                                        AI_reserve = AI_x + 1;
-                                        linePos = AI_y;
-                                        AI_x = (AI_x + 1) * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else if (p == 3 && block_4 == true)
-                                    {
-                                        AI_reserve = AI_x + 1;
-                                        linePos = AI_y + 1;
-                                        AI_x = (AI_x + 1) * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else if (p == 4 && block_5 == true)
-                                    {
-                                        AI_reserve = AI_x;
-                                        linePos = AI_y + 1;
-                                        AI_x = AI_x * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else if (p == 5 && block_6 == true)
-                                    {
-                                        AI_reserve = AI_x - 1;
-                                        linePos = AI_y + 1;
-                                        AI_x = (AI_x - 1) * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else if (p == 6 && block_7 == true)
-                                    {
-                                        AI_reserve = AI_x - 1;
-                                        linePos = AI_y;
-                                        AI_x = (AI_x - 1) * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else if (p==7 && block_8 == true)
-                                    {
-                                        AI_reserve = AI_x - 1;
-                                        linePos = AI_y - 1;
-                                        AI_x = (AI_x - 1) * 2;
-                                        columPos = AI_x;
-                                        Z_New = AI_reserve;
-                                    }
-                                    else
-                                    {
-                                        AI_reserve = 0;
-                                        linePos = 0;
-                                        AI_x = 0;
-                                        columPos = 0;
-                                        Z_New = 0;
-                                    }
-
-                                    if (((Math.Abs(linePos - lineHorse) == 2) && (Math.Abs((columPos - Z_New) - (columHorse - Z_old)) == 1)) || ((Math.Abs(linePos - lineHorse) == 1) && (Math.Abs((columPos - Z_New) - (columHorse - Z_old)) == 2)))
-                                    {
-                                        if (p==0)
+                                        if (p == 0 && block_1 == true)
                                         {
-                                            block_1 = false;
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
                                         }
-                                        else if (p == 1)
+                                        else if (p == 1 && block_2 == true)
                                         {
-                                            block_2 = false;
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
                                         }
-                                        else if (p == 2)
+                                        else if (p == 2 && block_3 == true)
                                         {
-                                            block_3 = false;
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
                                         }
-                                        else if (p == 3)
+                                        else if (p == 3 && block_4 == true)
                                         {
-                                            block_4 = false;
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
                                         }
-                                        else if (p == 4)
+                                        else if (p == 4 && block_5 == true)
                                         {
-                                            block_5 = false;
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
                                         }
-                                        else if (p == 5)
+                                        else if (p == 5 && block_6 == true)
                                         {
-                                            block_6 = false;
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
                                         }
-                                        else if (p == 6)
+                                        else if (p == 6 && block_7 == true)
                                         {
-                                            block_7 = false;
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
                                         }
-                                        else if (p == 7)
+                                        else if (p == 7 && block_8 == true)
                                         {
-                                            block_8 = false;
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
                                         }
 
-                                    }
-                                };
-                                break;//конь
-                            case "\u2657 ":; break;//Слон
-                            case "\u2656 ":; break;//Ладья
-                            case "\u2655 ":; break;//Королева
+                                        if (((Math.Abs(linePos - lineHorse) == 2) && (Math.Abs((columPos - Z_New) - (columHorse - Z_old)) == 1)) || ((Math.Abs(linePos - lineHorse) == 1) && (Math.Abs((columPos - Z_New) - (columHorse - Z_old)) == 2)))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
 
-                            case "\u265F ":; break;//Пешка
-                            case "\u265b ":; break;//Королева
-                            case "\u265c ":; break;//Ладья
-                            case "\u265d ":; break;//Слон
-                            case "\u265e ":; break;//конь
+                                        }
+                                    };
+                                    break;//конь
+                                case "\u2657 ":
+                                    int lineelEphant, columelEphant;//lineHorse-строка columHorse2-столбец
+                                    lineHorse = g;//y
+                                    columHorse = i * 2;//x
+                                    lineelEphant = g;
+                                    columelEphant = i;
+                                    Z_old = i;
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
+                                        }
+                                        if (Math.Abs(lineelEphant - linePos) == Math.Abs((columelEphant - Z_old) - (columPos - Z_New)))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    };
+                                    break;//Слон
+                                case "\u2656 ":
+                                    int lineRook, columRook;//lineHorse-строка columHorse2-столбец
+                                    lineRook = g;//y
+                                    columRook = i * 2;//x
+                                    Z_old = i;
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
+                                        }
+                                        if ((lineRook - linePos == 0) || ((columRook - Z_old) - (columPos - Z) == 0))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    }; break;//Ладья
+                                case "\u2655 ":
+                                    int lineQueen, columQueen;//lineHorse-строка columHorse2-столбец
+                                    lineQueen = g;//y
+                                    columQueen = i * 2;//x
+                                    Z_old = i;
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
+                                        }
+                                        if ((Math.Abs(lineQueen - linePos) == Math.Abs((columQueen - Z_old) - (columPos - Z))) || (lineQueen == linePos) || (columQueen - Z_old == columPos - Z))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    }; break;//Королева
+                            }
                         }
                     }
-                } 
+                }
+                else if (mass[AI_x, AI_y] == "\u265a")
+                {
+                    var block_1 = true;
+                    var block_2 = true;
+                    var block_3 = true;
+                    var block_4 = true;
+                    var block_5 = true;
+                    var block_6 = true;
+                    var block_7 = true;
+                    var block_8 = true;
+                    for (int i = 0; i < 8; i++)
+                    {
+                        for (int g = 0; g < 8; g++)
+                        {
+                            switch (mass[i, g])
+                            {
+                                case "\u265F ":
+                                    ; break;//Пешка
+                                case "\u265b ":
+                                    int lineQueen, columQueen, linePos, columPos, Z_old, Z_New;//lineHorse-строка columHorse2-столбец
+                                    lineQueen = g;//y
+                                    columQueen = i * 2;//x
+                                    Z_old = i;
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
+                                        }
+                                        if ((Math.Abs(lineQueen - linePos) == Math.Abs((columQueen - Z_old) - (columPos - Z))) || (lineQueen == linePos) || (columQueen - Z_old == columPos - Z))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    }; ; break;//Королева
+                                case "\u265c ":
+                                    int lineRook, columRook;//lineHorse-строка columHorse2-столбец
+                                    lineRook = g;//y
+                                    columRook = i * 2;//x
+                                    Z_old = i;
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
+                                        }
+                                        if ((lineRook - linePos == 0) || ((columRook - Z_old) - (columPos - Z) == 0))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    }
+                                   ; break;//Ладья
+                                case "\u265d ":
+                                    int lineelEphant, columelEphant;//lineHorse-строка columHorse2-столбец
+                                    lineelEphant = g;
+                                    columelEphant = i;
+                                    Z_old = i;
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
+                                        }
+                                        if (Math.Abs(lineelEphant - linePos) == Math.Abs((columelEphant - Z_old) - (columPos - Z_New)))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    }; break;//Слон
+                                case "\u265e ":
+                                    int lineHorse, columHorse; //lineHorse-строка columHorse2-столбец
+                                    lineHorse = g;//y
+                                    Z_old = i;
+                                    columHorse = i * 2;//x
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            linePos = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            linePos = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            columPos = AI_x;
+                                            Z_New = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            linePos = 0;
+                                            AI_x = 0;
+                                            columPos = 0;
+                                            Z_New = 0;
+                                        }
+
+                                        if (((Math.Abs(linePos - lineHorse) == 2) && (Math.Abs((columPos - Z_New) - (columHorse - Z_old)) == 1)) || ((Math.Abs(linePos - lineHorse) == 1) && (Math.Abs((columPos - Z_New) - (columHorse - Z_old)) == 2)))
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    }; break;//конь
+                            }
+                        }
+                    }
+                }
             }
             return Game;
         }
