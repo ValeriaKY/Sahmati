@@ -18,7 +18,7 @@ namespace ZMEIKKA
            do
            {
                 XYI.Figura_vibor();
-                //XYI.AI_Figura_vibor();
+                XYI.AI_Figura_vibor();
            } while (true);
         }
     }
