@@ -129,106 +129,142 @@ namespace ZMEIKKA
         }
         private void Pehuia_i()
         {
-           /* int j = 0;
+            int j = 0;
+
+            mKey = Console.ReadKey(true);
+            int add_UD = 0, add_LD = 0, x_p = x, y_p = y;
             do
             {
-                mKey = Console.ReadKey(true);
-                int add,x_p,y_p;
-                 if (x == 0 && y == 6 || x == 2 && y == 6 || x == 4 && y == 6 || x == 6 && y == 6 || x == 8 && y == 6 || x == 10 && y == 6 || x == 12 && y == 6 || x == 14 && y == 6)
-                 {
-                    do
-                    {
-                        mKey = Console.ReadKey(true);
-                        switch (mKey.Key)
-                        {
-                            case ConsoleKey.W:
-                                if (y > 0)
-                                {
-                                    y--;
-                                    Console.SetCursorPosition(x, y);
-                                }
-                                break;
-                            case ConsoleKey.A:
-                                if (x > 0)
-                                {
-                                    x = x - 2;
-                                    Console.SetCursorPosition(x, y);
-                                    Z--;
-                                }
-                                break;
-                            case ConsoleKey.S:
-                                if (y < 7)
-                                {
-                                    y++;
-                                    Console.SetCursorPosition(x, y);
-                                }
-                                break;
-                            case ConsoleKey.D:
-                                if (x < 7 * 2)
-                                {
-                                    x = x + 2;
-                                    Console.SetCursorPosition(x, y);
-                                    Z++;
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                    } while (mKey.Key != ConsoleKey.Enter);
-                }
-                 else
-                 {
-                     add = 1;
-                 }
-                if (Proverka_AI(AI_x, AI_y, AI_reserve) == true)
+                do
                 {
-                    if (((AI_reserve + AI_y) % 2) != 0)
-                    { Console.BackgroundColor = ConsoleColor.Black; }
-                    else
-                    { Console.BackgroundColor = ConsoleColor.White; }
-                    mass[AI_y, AI_reserve] = "  ";
-                    Console.SetCursorPosition(AI_x, AI_y);
-                    Console.Write(mass[AI_y, AI_reserve]);
-                    AI_y += add;
-                    Console.SetCursorPosition(AI_x, AI_y);
-                    mass[AI_y, AI_reserve] = "\u265F ";
-                    if (((AI_reserve + AI_y) % 2) == 0)
+                    mKey = Console.ReadKey(true);
+                    switch (mKey.Key)
                     {
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.Write(mass[AI_y, AI_reserve]);
+                        case ConsoleKey.W:
+                            if (y > 0)
+                            {
+                                y--;
+                                Console.SetCursorPosition(x, y);
+                                add_UD--;
+                            }
+                            break;
+                        case ConsoleKey.A:
+                            if (x > 0)
+                            {
+                                x = x - 2;
+                                Console.SetCursorPosition(x, y);
+                                Z--;
+                                add_LD = add_LD - 2;
+                            }
+                            break;
+                        case ConsoleKey.S:
+                            if (y < 7)
+                            {
+                                y++;
+                                Console.SetCursorPosition(x, y);
+                                add_UD++;
+                            }
+                            break;
+                        case ConsoleKey.D:
+                            if (x < 7 * 2)
+                            {
+                                x = x + 2;
+                                Console.SetCursorPosition(x, y);
+                                Z++;
+                                add_LD = add_LD + 2;
+                            }
+                            break;
+                        default:
+                            break;
                     }
-                    else
+                } while (mKey.Key != ConsoleKey.Enter);
+                if (Proverka_i() == true)
+                {
+                    if (mass[x_p + 1, y_p + 1] == "\u265b " || mass[x_p + 1, y_p + 1] == "\u265a " || mass[x_p + 1, y_p + 1] == "\u265d " || mass[x_p + 1, y_p + 1] == "\u265e " || mass[x_p + 1, y_p + 1] == "\u265c " || mass[x_p + 1, y_p + 1] == "\u265F " || mass[x_p - 1, y_p + 1] == "\u265b " || mass[x_p - 1, y_p + 1] == "\u265a " || mass[x_p - 1, y_p + 1] == "\u265d " || mass[x_p - 1, y_p+1] == "\u265e " || mass[x_p - 1, y_p + 1] == "\u265c " || mass[x_p - 1, y_p + 1] == "\u265F ")
                     {
-                        Console.BackgroundColor = ConsoleColor.Black;
-                        Console.Write(mass[AI_y, AI_reserve]);
+                        j = 1;
+                        j = 1;
+                        if ((((x - Z) + y) % 2) != 0)
+                        { Console.BackgroundColor = ConsoleColor.Black; }
+                        else
+                        { Console.BackgroundColor = ConsoleColor.White; }
+                        mass[y, x - Z] = "  ";
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(mass[y, x - Z]);
+                        y += add_UD;
+                        x_p = x;
+                        x += add_LD;
+                        if (x_p > x)
+                        {
+                            Z--;
+                        }
+                        else
+                        {
+                            Z++;
+                        }
+                        Console.SetCursorPosition(x, y);
+                        mass[y, x - Z] = "\u2659 ";
+                        if ((((x - Z) + y) % 2) == 0)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.Write(mass[y, x - Z]);
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.Write(mass[y, x - Z]);
+                        }
+                    }
+                    else if (x_p == 0 && y_p == 6 || x_p == 2 && y_p == 6 || x_p == 4 && y_p == 6 || x_p == 6 && y_p == 6 || x_p == 8 && y_p == 6 || x_p == 10 && y_p == 6 || x_p == 12 && y_p == 6 || x_p == 14 && y_p == 6)
+                    {
+                        j = 1;
+                        if ((((x - Z) + y) % 2) != 0)
+                        { Console.BackgroundColor = ConsoleColor.Black; }
+                        else
+                        { Console.BackgroundColor = ConsoleColor.White; }
+                        mass[y, x - Z] = "  ";
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(mass[y, x - Z]);
+                        y += add_UD;
+                        Console.SetCursorPosition(x, y);
+                        mass[y, x - Z] = "\u2659 ";
+                        if ((((x - Z) + y) % 2) == 0)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.Write(mass[y, x - Z]);
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.Write(mass[y, x - Z]);
+                        }
+                    }
+                    else if (add_UD == 1)
+                    {
+                        j = 1;
+                        if ((((x - Z) + y) % 2) != 0)
+                        { Console.BackgroundColor = ConsoleColor.Black; }
+                        else
+                        { Console.BackgroundColor = ConsoleColor.White; }
+                        mass[y, x - Z] = "  ";
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(mass[y, x - Z]);
+                        y += add_UD;
+                        Console.SetCursorPosition(x, y);
+                        mass[y, x - Z] = "\u2659 ";
+                        if ((((x - Z) + y) % 2) == 0)
+                        {
+                            Console.BackgroundColor = ConsoleColor.White;
+                            Console.Write(mass[y, x - Z]);
+                        }
+                        else
+                        {
+                            Console.BackgroundColor = ConsoleColor.Black;
+                            Console.Write(mass[y, x - Z]);
+                        }
                     }
                 }
-            } while (mKey.Key != ConsoleKey.Enter) ;
-
-                 else
-                 {
-                     if ((((x - Z) + y) % 2) != 0)
-                     { Console.BackgroundColor = ConsoleColor.Black; }
-                     else
-                     { Console.BackgroundColor = ConsoleColor.White; }
-                     mass[y, (x - Z)] = "  ";
-                     Console.SetCursorPosition(x, y);
-                     Console.Write(mass[y, (x - Z)]);
-                     y--;
-                     Console.SetCursorPosition(x, y);
-                     mass[y, (x - Z)] = "\u2659 ";
-                     if ((((x - Z) + y) % 2) == 0)
-                     {
-                         Console.BackgroundColor = ConsoleColor.White;
-                         Console.Write(mass[y, (x - Z)]);
-                     }
-                     else
-                     {
-                         Console.BackgroundColor = ConsoleColor.Black;
-                         Console.Write(mass[y, (x - Z)]);
-                     }
-                 }*/
-            
+            } while (j != 1);
         }
         private void Kanina_i()
         {
@@ -632,55 +668,76 @@ namespace ZMEIKKA
                 int AI_x = rand.Next(0, 8);
                 int AI_y = rand.Next(0, 8);
                 int AI_reserve = AI_x;
-                 if (mass[AI_y, AI_x] == "\u265F ")//Пешка
-                 {
-                     AI_x = AI_x * 2;
-                     Pehuia_AI(AI_x, AI_y,AI_reserve);
-                     i++;
-                 }
-                 else if (mass[AI_y, AI_x] == "\u265e ")//конь
+                if (mass[AI_y, AI_x] == "\u265F ")//Пешка
+                {
+                    AI_x = AI_x * 2;
+                    Pehuia_AI(AI_x, AI_y, AI_reserve);
+                    i++;
+                }
+                else if (mass[AI_y, AI_x] == "\u265e ")//конь
                 {
                     AI_x = AI_x * 2;
                     Kanina_AI(AI_x, AI_y, AI_reserve);
                     i++;
                 }
-                 else if (mass[AI_y, AI_x] == "\u265d ")//Слон
-                 {
+                else if (mass[AI_y, AI_x] == "\u265d ")//Слон
+                {
                     AI_x = AI_x * 2;
                     Slon_AI(AI_x, AI_y, AI_reserve);
-                     i++;
-                 }
-                 else if (mass[AI_y, AI_x] == "\u265c ")//Ладья
-                 {
+                    i++;
+                }
+                else if (mass[AI_y, AI_x] == "\u265c ")//Ладья
+                {
                     AI_x = AI_x * 2;
                     Ladia_AI(AI_x, AI_y, AI_reserve);
-                     i++;
-                 }
-                 else if (mass[AI_y, AI_x] == "\u265b ")//Королева
-                 {
+                    i++;
+                }
+                else if (mass[AI_y, AI_x] == "\u265b ")//Королева
+                {
                     AI_x = AI_x * 2;
                     COVID_19_AI(AI_x, AI_y, AI_reserve);
-                     i++;
-                 }
-                 else if (mass[AI_y, AI_x] == "\u265a ")//Король
-                 {
+                    i++;
+                }
+                else if (mass[AI_y, AI_x] == "\u265a ")//Король
+                {
                     AI_x = AI_x * 2;
                     COVID_20_AI(AI_x, AI_y, AI_reserve);
                     i++;
-                 }
+                }
             }
             while (i != 1);
         }
         private void Pehuia_AI(int AI_x, int AI_y, int AI_reserve)
         {
-            int add;
-            if (AI_x == 0 && AI_y == 1 || AI_x == 2 && AI_y == 1 || AI_x == 4 && AI_y == 1 || AI_x == 6 && AI_y == 1 || AI_x == 8 && AI_y == 1 || AI_x == 10 && AI_y == 1 || AI_x == 12 && AI_y == 1 || AI_x == 14 && AI_y == 1)
+            int add_UD = 0, add_LD = 0;
+            if (mass[AI_x + 1, AI_y + 1] == "\u2654 " || mass[AI_x + 1, AI_y + 1] == "\u2655 " || mass[AI_x + 1, AI_y + 1] == "\u2656 " || mass[AI_x + 1, AI_y + 1] == "\u2657 " || mass[AI_x + 1, AI_y + 1] == "\u2658 " || mass[AI_x + 1, AI_y + 1] == "\u2659 " || mass[AI_x - 1, AI_y + 1] == "\u2654 " || mass[AI_x - 1, AI_y + 1] == "\u2655 " || mass[AI_x - 1, AI_y + 1] == "\u2656 " || mass[AI_x - 1, AI_y + 1] == "\u2657 " || mass[AI_x - 1, AI_y + 1] == "\u2658 " || mass[AI_x - 1, AI_y + 1] == "\u2659 ")
             {
-                add = rand.Next(1, 3);
+                switch (mass[AI_x + 1, AI_y + 1])
+                {
+                    case "\u2655 ":add_LD = 1;add_UD = 1;break;
+                    case "\u2654 ": add_LD = 1; add_UD = 1;break;
+                    case "\u2657 ": add_LD = 1; add_UD = 1;break;
+                    case "\u2658 ": add_LD = 1; add_UD = 1;break;
+                    case "\u2656 ": add_LD = 1; add_UD = 1;break;
+                    case "\u2659 ": add_LD = 1; add_UD = 1;break;
+                }
+                switch (mass[AI_x - 1, AI_y + 1])
+                {
+                    case "\u2655 ": add_LD = -1; add_UD = 1; break;
+                    case "\u2654 ": add_LD = -1; add_UD = 1; break;
+                    case "\u2657 ": add_LD = -1; add_UD = 1; break;
+                    case "\u2658 ": add_LD = -1; add_UD = 1; break;
+                    case "\u2656 ": add_LD = -1; add_UD = 1; break;
+                    case "\u2659 ": add_LD = -1; add_UD = 1; break;
+                }
+            }
+            else if (AI_x == 0 && AI_y == 1 || AI_x == 2 && AI_y == 1 || AI_x == 4 && AI_y == 1 || AI_x == 6 && AI_y == 1 || AI_x == 8 && AI_y == 1 || AI_x == 10 && AI_y == 1 || AI_x == 12 && AI_y == 1 || AI_x == 14 && AI_y == 1)
+            {
+                add_UD = rand.Next(1, 3);
             }
             else
             {
-                add = 1;
+                add_UD = 1;
             }
             if (Proverka_AI(AI_x, AI_y, AI_reserve) == true)
             {
@@ -691,7 +748,9 @@ namespace ZMEIKKA
                 mass[AI_y, AI_reserve] = "  ";
                 Console.SetCursorPosition(AI_x, AI_y);
                 Console.Write(mass[AI_y, AI_reserve]);
-                AI_y += add;
+                AI_y += add_UD;
+                AI_x += (add_LD * 2);
+                AI_reserve += add_LD;
                 Console.SetCursorPosition(AI_x, AI_y);
                 mass[AI_y, AI_reserve] = "\u265F ";
                 if (((AI_reserve + AI_y) % 2) == 0)
@@ -767,7 +826,7 @@ namespace ZMEIKKA
                 linePos = AI_y;
                 columPos = AI_x;
                 Z_New = AI_reserve;
-                if (Proverka_AI(AI_x,AI_y,AI_reserve) == true)
+                if (Proverka_AI(AI_x, AI_y, AI_reserve) == true)
                 {
                     if (Math.Abs(lineelEphant - linePos) == Math.Abs((columelEphant - Z_old) - (columPos - Z_New)))
                     {
@@ -951,14 +1010,14 @@ namespace ZMEIKKA
                         break;
                     }
                 }
-                if(beck == 1)
+                if (beck == 1)
                 {
                     break;
                 }
             }
             Z_OLD = X;
             X = X * 2;
-            if (Vacsina(X,Y,Z_OLD)==true)
+            if (Vacsina(X, Y, Z_OLD) == true)
             {
                 Console.SetCursorPosition(0, 8);
                 Console.WriteLine("Конец игры вы проиграли");
@@ -983,7 +1042,7 @@ namespace ZMEIKKA
             }
             Z_OLD = X;
             X = X * 2;
-            if (Vacsina(X,Y,Z_OLD) == true)
+            if (Vacsina(X, Y, Z_OLD) == true)
             {
                 Console.SetCursorPosition(0, 8);
                 Console.WriteLine("Конец игры вы победили");
@@ -1979,4 +2038,4 @@ namespace ZMEIKKA
             return Game;
         }
     }
-} 
+}
