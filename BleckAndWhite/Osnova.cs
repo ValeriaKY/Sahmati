@@ -1053,7 +1053,7 @@ namespace ZMEIKKA
             bool Game = false;
             if (Game == false)
             {
-                if (mass[AI_x, AI_y] == "\u2654 ")
+                if (mass[AI_x, AI_y] == "\u2654  ")
                 {
                     var block_1 = true;
                     var block_2 = true;
@@ -1070,7 +1070,119 @@ namespace ZMEIKKA
                             switch (mass[i, g])
                             {
                                 case "\u2659 ":
-                                    ;
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        int long_x = i, long_y = g,long_z;
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            long_y = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            long_y = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            long_y = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            long_y = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            long_y = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            long_y = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            long_y = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            long_y = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            long_y = 0;
+                                            AI_x = 0;
+                                            long_x = 0;
+                                            long_z = 0;
+                                        }
+
+                                        if (mass[long_x + 1, long_y + 1] == "\u2654 " || mass[long_x - 1, long_y + 1] == "\u2654 ") 
+                                            {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    };
                                     break;//Пешка
                                 case "\u2658 ":
                                     int lineHorse, columHorse, linePos, columPos;//lineHorse-строка columHorse2-столбец
@@ -1563,7 +1675,119 @@ namespace ZMEIKKA
                             switch (mass[i, g])
                             {
                                 case "\u265F ":
-                                    ; break;//Пешка
+                                    for (int p = 0; i < 8; i++)
+                                    {
+                                        int long_x = i, long_y = g, long_z;
+                                        if (p == 0 && block_1 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            long_y = AI_y - 1;
+                                            AI_x = AI_x * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 1 && block_2 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            long_y = AI_y - 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 2 && block_3 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            long_y = AI_y;
+                                            AI_x = (AI_x + 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 3 && block_4 == true)
+                                        {
+                                            AI_reserve = AI_x + 1;
+                                            long_y = AI_y + 1;
+                                            AI_x = (AI_x + 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 4 && block_5 == true)
+                                        {
+                                            AI_reserve = AI_x;
+                                            long_y = AI_y + 1;
+                                            AI_x = AI_x * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 5 && block_6 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            long_y = AI_y + 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 6 && block_7 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            long_y = AI_y;
+                                            AI_x = (AI_x - 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else if (p == 7 && block_8 == true)
+                                        {
+                                            AI_reserve = AI_x - 1;
+                                            long_y = AI_y - 1;
+                                            AI_x = (AI_x - 1) * 2;
+                                            long_x = AI_x;
+                                            long_z = AI_reserve;
+                                        }
+                                        else
+                                        {
+                                            AI_reserve = 0;
+                                            long_y = 0;
+                                            AI_x = 0;
+                                            long_x = 0;
+                                            long_z = 0;
+                                        }
+
+                                        if (mass[long_x + 1, long_y + 1] == "\u265F " || mass[long_x - 1, long_y + 1] == "\u265F ")
+                                        {
+                                            if (p == 0)
+                                            {
+                                                block_1 = false;
+                                            }
+                                            else if (p == 1)
+                                            {
+                                                block_2 = false;
+                                            }
+                                            else if (p == 2)
+                                            {
+                                                block_3 = false;
+                                            }
+                                            else if (p == 3)
+                                            {
+                                                block_4 = false;
+                                            }
+                                            else if (p == 4)
+                                            {
+                                                block_5 = false;
+                                            }
+                                            else if (p == 5)
+                                            {
+                                                block_6 = false;
+                                            }
+                                            else if (p == 6)
+                                            {
+                                                block_7 = false;
+                                            }
+                                            else if (p == 7)
+                                            {
+                                                block_8 = false;
+                                            }
+
+                                        }
+                                    }; ; break;//Пешка
                                 case "\u265b ":
                                     int lineQueen, columQueen, linePos, columPos, Z_old, Z_New;//lineHorse-строка columHorse2-столбец
                                     lineQueen = g;//y
