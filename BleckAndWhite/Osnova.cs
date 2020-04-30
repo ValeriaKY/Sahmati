@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+
 namespace ZMEIKKA
 {
     public class Osnova
@@ -394,22 +395,25 @@ namespace ZMEIKKA
                 {
                     if (Math.Abs(lineelEphant - linePos) == Math.Abs((columelEphant - Z_old) - (columPos - Z)))
                     {
-                        mass[lineelEphant, columelEphant - Z_old] = "  ";
-                        Console.SetCursorPosition(columelEphant, lineelEphant);
-                        if ((((columelEphant - Z_old) + lineelEphant) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[lineelEphant, columelEphant - Z_old]);
+                        if (Slon(Old_y: lineelEphant, Old_x: columelEphant, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z))//Поменять местави х и у
+                        {
+                            mass[lineelEphant, columelEphant - Z_old] = "  ";
+                            Console.SetCursorPosition(columelEphant, lineelEphant);
+                            if ((((columelEphant - Z_old) + lineelEphant) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[lineelEphant, columelEphant - Z_old]);
 
-                        mass[linePos, columPos - Z] = "\u2657 ";
-                        Console.SetCursorPosition(columPos, linePos);
-                        if ((((columPos - Z) + linePos) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[linePos, columPos - Z]);
-                        i++;
+                            mass[linePos, columPos - Z] = "\u2657 ";
+                            Console.SetCursorPosition(columPos, linePos);
+                            if ((((columPos - Z) + linePos) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[linePos, columPos - Z]);
+                            i++;
+                        }
                     }
                 }
             } while (i == 0);
@@ -468,22 +472,25 @@ namespace ZMEIKKA
                 {
                     if ((lineRook - linePos == 0) || ((columRook - Z_old) - (columPos - Z) == 0))
                     {
-                        mass[lineRook, columRook - Z_old] = "  ";
-                        Console.SetCursorPosition(columRook, lineRook);
-                        if ((((columRook - Z_old) + lineRook) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[lineRook, columRook - Z_old]);
+                        if (Ladia(Old_y: lineRook, Old_x: columRook, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z))//Поменять местави х и у
+                        {
+                            mass[lineRook, columRook - Z_old] = "  ";
+                            Console.SetCursorPosition(columRook, lineRook);
+                            if ((((columRook - Z_old) + lineRook) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[lineRook, columRook - Z_old]);
 
-                        mass[linePos, columPos - Z] = "\u2656 ";
-                        Console.SetCursorPosition(columPos, linePos);
-                        if ((((columPos - Z) + linePos) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[linePos, columPos - Z]);
-                        i++;
+                            mass[linePos, columPos - Z] = "\u2656 ";
+                            Console.SetCursorPosition(columPos, linePos);
+                            if ((((columPos - Z) + linePos) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[linePos, columPos - Z]);
+                            i++;
+                        }
                     }
                 }
             } while (i == 0);
@@ -542,22 +549,25 @@ namespace ZMEIKKA
                 {
                     if ((Math.Abs(lineQueen - linePos) == Math.Abs((columQueen - Z_old) - (columPos - Z))) || (lineQueen == linePos) || (columQueen - Z_old == columPos - Z))
                     {
-                        mass[lineQueen, columQueen - Z_old] = "  ";
-                        Console.SetCursorPosition(columQueen, lineQueen);
-                        if ((((columQueen - Z_old) + lineQueen) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[lineQueen, columQueen - Z_old]);
+                        if ( Slon(Old_y: lineQueen, Old_x: columQueen, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z) && Ladia(Old_y: lineQueen, Old_x: columQueen, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z))//Поменять местави х и у
+                        {
+                            mass[lineQueen, columQueen - Z_old] = "  ";
+                            Console.SetCursorPosition(columQueen, lineQueen);
+                            if ((((columQueen - Z_old) + lineQueen) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[lineQueen, columQueen - Z_old]);
 
-                        mass[linePos, columPos - Z] = "\u2655 ";
-                        Console.SetCursorPosition(columPos, linePos);
-                        if ((((columPos - Z) + linePos) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[linePos, columPos - Z]);
-                        i++;
+                            mass[linePos, columPos - Z] = "\u2655 ";
+                            Console.SetCursorPosition(columPos, linePos);
+                            if ((((columPos - Z) + linePos) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[linePos, columPos - Z]);
+                            i++;
+                        }
                     }
                 }
             } while (i != 1);
@@ -829,22 +839,25 @@ namespace ZMEIKKA
                 {
                     if (Math.Abs(lineelEphant - linePos) == Math.Abs((columelEphant - Z_old) - (columPos - Z_New)))
                     {
-                        mass[lineelEphant, columelEphant - Z_old] = "  ";
-                        Console.SetCursorPosition(columelEphant, lineelEphant);
-                        if ((((columelEphant - Z_old) + lineelEphant) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[lineelEphant, columelEphant - Z_old]);
+                        if (Slon(Old_y: lineelEphant, Old_x: columelEphant, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z_New))//Поменять местави х и у
+                        {
+                            mass[lineelEphant, columelEphant - Z_old] = "  ";
+                            Console.SetCursorPosition(columelEphant, lineelEphant);
+                            if ((((columelEphant - Z_old) + lineelEphant) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[lineelEphant, columelEphant - Z_old]);
 
-                        mass[linePos, columPos - Z_New] = "\u265d ";
-                        Console.SetCursorPosition(columPos, linePos);
-                        if ((((columPos - Z_New) + linePos) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[linePos, columPos - Z_New]);
-                        i++;
+                            mass[linePos, columPos - Z_New] = "\u265d ";
+                            Console.SetCursorPosition(columPos, linePos);
+                            if ((((columPos - Z_New) + linePos) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[linePos, columPos - Z_New]);
+                            i++;
+                        }
                     }
                 }
             } while (i == 0);
@@ -870,22 +883,25 @@ namespace ZMEIKKA
                 {
                     if ((lineRook - linePos == 0) || ((columRook - Z_old) - (columPos - Z) == 0))
                     {
-                        mass[lineRook, columRook - Z_old] = "  ";
-                        Console.SetCursorPosition(columRook, lineRook);
-                        if ((((columRook - Z_old) + lineRook) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[lineRook, columRook - Z_old]);
+                        if (Ladia(Old_y: lineRook, Old_x: columRook, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z_New))//Поменять местави х и у
+                        {
+                            mass[lineRook, columRook - Z_old] = "  ";
+                            Console.SetCursorPosition(columRook, lineRook);
+                            if ((((columRook - Z_old) + lineRook) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[lineRook, columRook - Z_old]);
 
-                        mass[linePos, columPos - Z_New] = "\u265c ";
-                        Console.SetCursorPosition(columPos, linePos);
-                        if ((((columPos - Z_New) + linePos) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[linePos, columPos - Z_New]);
-                        i++;
+                            mass[linePos, columPos - Z_New] = "\u265c ";
+                            Console.SetCursorPosition(columPos, linePos);
+                            if ((((columPos - Z_New) + linePos) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[linePos, columPos - Z_New]);
+                            i++;
+                        }
                     }
                 }
             } while (i == 0);
@@ -909,24 +925,27 @@ namespace ZMEIKKA
                 Z_New = AI_reserve;
                 if (Proverka_AI(AI_x, AI_y, AI_reserve) == true)
                 {
-                    if ((Math.Abs(lineQueen - linePos) == Math.Abs((columQueen - Z_old) - (columPos - Z))) || (lineQueen == linePos) || (columQueen - Z_old == columPos - Z))
+                    if ((Math.Abs(lineQueen - linePos) == Math.Abs((columQueen - Z_old) - (columPos - Z_New))) || (lineQueen == linePos) || (columQueen - Z_old == columPos - Z_New))
                     {
-                        mass[lineQueen, columQueen - Z_old] = "  ";
-                        Console.SetCursorPosition(columQueen, lineQueen);
-                        if ((((columQueen - Z_old) + lineQueen) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[lineQueen, columQueen - Z_old]);
+                        if (Slon(Old_y: lineQueen, Old_x: columQueen, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z_New) && Ladia(Old_y: lineQueen, Old_x: columQueen, Old_Z: Z_old, New_x: columPos, New_y: linePos, New_Z: Z_New))//Поменять местави х и у
+                        {
+                            mass[lineQueen, columQueen - Z_old] = "  ";
+                            Console.SetCursorPosition(columQueen, lineQueen);
+                            if ((((columQueen - Z_old) + lineQueen) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[lineQueen, columQueen - Z_old]);
 
-                        mass[linePos, columPos - Z_New] = "\u265b ";
-                        Console.SetCursorPosition(columPos, linePos);
-                        if ((((columPos - Z_New) + linePos) % 2) != 0)
-                        { Console.BackgroundColor = ConsoleColor.Black; }
-                        else
-                        { Console.BackgroundColor = ConsoleColor.White; }
-                        Console.Write(mass[linePos, columPos - Z_New]);
-                        i++;
+                            mass[linePos, columPos - Z_New] = "\u265b ";
+                            Console.SetCursorPosition(columPos, linePos);
+                            if ((((columPos - Z_New) + linePos) % 2) != 0)
+                            { Console.BackgroundColor = ConsoleColor.Black; }
+                            else
+                            { Console.BackgroundColor = ConsoleColor.White; }
+                            Console.Write(mass[linePos, columPos - Z_New]);
+                            i++;
+                        }
                     }
                 }
             } while (i != 1);
@@ -2259,6 +2278,112 @@ namespace ZMEIKKA
                 }
             }
             return Game;
+        }
+        private bool Ladia (int Old_x, int Old_y,int Old_Z, int New_x, int New_y, int New_Z)
+        {
+            if (New_x - Old_x > 0)
+            {
+                for (int l = Old_x+2; l < New_x; l+=2)
+                {
+                    int Neon_z = Old_Z;
+                    if (mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F ")
+                    {
+                        return false;
+                    }
+                    Neon_z++;
+                }
+            }
+            else if (New_x - Old_x < 0)
+            {
+                for (int l = Old_x - 2; l > New_x; l -= 2)
+                {
+                    int Neon_z = Old_Z;
+                    if (mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F ")
+                    {
+                        return false;
+                    }
+                    Neon_z--;
+                }
+            }
+            else if (New_y - Old_y > 0)
+            {
+                for (int l = Old_y + 1; l < New_y; l ++)
+                {
+                    int Neon_z = Old_x - Old_Z;
+                    if (mass[Neon_z, l] == "\u2654 " || mass[Neon_z, l] == "\u2655 " || mass[Neon_z, l] == "\u2656 " || mass[Neon_z, l] == "\u2657 " || mass[Neon_z, l] == "\u2658 " || mass[Neon_z, l] == "\u2659 " || mass[Neon_z, l] == "\u2654 " || mass[Neon_z, l] == "\u2655 " || mass[Neon_z, l] == "\u2656 " || mass[Neon_z, l] == "\u2657 " || mass[Neon_z, l] == "\u2658 " || mass[Neon_z, l] == "\u2659 " || mass[Neon_z, l] == "\u265b " || mass[Neon_z, l] == "\u265a " || mass[Neon_z, l] == "\u265d " || mass[Neon_z, l] == "\u265e " || mass[Neon_z, l] == "\u265c " || mass[Neon_z, l] == "\u265F " || mass[Neon_z, l] == "\u265b " || mass[Neon_z, l] == "\u265a " || mass[Neon_z, l] == "\u265d " || mass[Neon_z, l] == "\u265e " || mass[Neon_z, l] == "\u265c " || mass[Neon_z, l] == "\u265F ")
+                    {
+                        return false;
+                    }
+                }
+            }
+            else if (New_y - Old_y < 0)
+            {
+                for (int l = Old_y - 1; l > New_y; l--)
+                {
+                    int Neon_z = Old_x - Old_Z;
+                    if (mass[Neon_z, l] == "\u2654 " || mass[Neon_z, l] == "\u2655 " || mass[Neon_z, l] == "\u2656 " || mass[Neon_z, l] == "\u2657 " || mass[Neon_z, l] == "\u2658 " || mass[Neon_z, l] == "\u2659 " || mass[Neon_z, l] == "\u2654 " || mass[Neon_z, l] == "\u2655 " || mass[Neon_z, l] == "\u2656 " || mass[Neon_z, l] == "\u2657 " || mass[Neon_z, l] == "\u2658 " || mass[Neon_z, l] == "\u2659 " || mass[Neon_z, l] == "\u265b " || mass[Neon_z, l] == "\u265a " || mass[Neon_z, l] == "\u265d " || mass[Neon_z, l] == "\u265e " || mass[Neon_z, l] == "\u265c " || mass[Neon_z, l] == "\u265F " || mass[Neon_z, l] == "\u265b " || mass[Neon_z, l] == "\u265a " || mass[Neon_z, l] == "\u265d " || mass[Neon_z, l] == "\u265e " || mass[Neon_z, l] == "\u265c " || mass[Neon_z, l] == "\u265F ")
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private bool Slon (int Old_x, int Old_y, int Old_Z, int New_x, int New_y, int New_Z)
+        {
+            if (New_x - Old_x > 0 && New_y - Old_y <0)//Верх право
+            {
+                int Neon_z = Old_Z;
+                for (int l = Old_x + 2; l < New_x; l+=2)
+                {
+                    Old_y--;
+                    if (mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F ")
+                    {
+                        return false;
+                    }
+                }
+                Neon_z++;
+            }
+            else if (New_x - Old_x < 0 && New_y - Old_y > 0)//Низ лево
+            {
+                int Neon_z = Old_Z;
+                for (int l = Old_x - 2; l < New_x; l -= 2)
+                {
+                    Old_y++;
+                    if (mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F ")
+                    {
+                        return false;
+                    }
+                    Neon_z--;
+                }
+            }
+            else if (New_x - Old_x > 0 && New_y - Old_y > 0)//Низ право
+            {
+                int Neon_z = Old_Z;
+                for (int l = Old_x + 2; l < New_x; l += 2)
+                {
+                    Old_y++;
+                    if (mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F ")
+                    {
+                        return false;
+                    }
+                }
+                Neon_z++;
+            }
+            else if (New_x - Old_x < 0 && New_y - Old_y < 0)//Верх лево
+            {
+                int Neon_z = Old_Z;
+                for (int l = Old_x - 2; l < New_x; l -= 2)
+                {
+                    Old_y--;
+                    if (mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265F ")
+                    {
+                        return false;
+                    }
+                }
+                Neon_z--;
+            }
+            return true;
         }
     }
 }
