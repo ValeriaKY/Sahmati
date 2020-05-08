@@ -9,8 +9,8 @@ namespace ZMEIKKA
         public bool end = true;
         private string[,] mass = new string[,]
         {
-            { "\u265c ","\u265e ","\u265d ", "\u265b ", "\u265a ", "\u265d ", "\u265e ", "\u265c " },
-            { "\u265F ","\u265F ","\u265F ", "\u265F ", "\u265F ", "\u265F ", "\u265F ", "\u265F " },
+            { "\u265c ","\u265e ","  ", "  ", "  ", "  ", "\u265e ", "\u265c " },
+            { "\u265f ","  ","  ", "  ", "  ", "  ", "  ", "\u265f " },
             { "  ","  ","  ", "  ", "  ", "  ", "  ", "  " },
             { "  ","  ","  ", "  ", "  ", "  ", "  ", "  " },
             { "  ","  ","  ", "  ", "  ", "  ", "  ", "  " },
@@ -692,17 +692,17 @@ namespace ZMEIKKA
             do
             {
                 G = 0;
-                int AI_x = rand.Next(0, 8);
-                int AI_y = rand.Next(0, 8);
+                int AI_x = 7; //rand.Next(0, 8);
+                int AI_y = 0; //rand.Next(0, 8);
                 int AI_reserve = AI_x;
                 if (mass[AI_y, AI_x] == "\u265F ")//Пешка
                 {
-                    AI_x = AI_x * 2;
+                    /*AI_x = AI_x * 2;
                     Pehuia_AI(AI_x, AI_y, AI_reserve);
                     if (G == 0)
                         i++;
                     else
-                        i = 0;
+                        i = 0;*/
                 }
                 else if (mass[AI_y, AI_x] == "\u265e ")//конь
                 {
@@ -943,13 +943,16 @@ namespace ZMEIKKA
             G = 0;
             do
             {
-                AI_x = rand.Next(0, 8);
-                AI_y = rand.Next(0, 8);
-                AI_reserve = AI_x;
-                AI_x = AI_x * 2;
-                linePos = AI_y;
-                columPos = AI_x;
-                Z_New = AI_reserve;
+                do
+                {
+                    AI_x = rand.Next(0, 8);
+                    AI_y = rand.Next(0, 8);
+                    AI_reserve = AI_x;
+                    AI_x = AI_x * 2;
+                    linePos = AI_y;
+                    columPos = AI_x;
+                    Z_New = AI_reserve;
+                } while (lineRook - linePos != 0 || columRook - columPos != 0);
                 if (Proverka_AI(AI_x, AI_y, AI_reserve) == true)
                 {
                     if ((lineRook - linePos == 0) || ((columRook - Z_old) - (columPos - Z) == 0))
@@ -975,11 +978,11 @@ namespace ZMEIKKA
                         }
                     }
                 }
-                next_day++;
+                /*next_day++;
                 if (next_day > 5)
                 {
-                    i = 1; G = 2;
-                }
+                  i = 1; G = 2;
+                }*/
             } while (i == 0);
         }
         private void COVID_19_AI(int AI_x, int AI_y, int AI_reserve)
@@ -2373,9 +2376,9 @@ namespace ZMEIKKA
         {
             if (New_x - Old_x > 0)
             {
+                int Neon_z = Old_Z;
                 for (int l = Old_x+2; l < New_x; l+=2)
                 {
-                    int Neon_z = Old_Z;
                     if (mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265f " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 ")
                     {
                         return false;
@@ -2385,9 +2388,9 @@ namespace ZMEIKKA
             }
             else if (New_x - Old_x < 0)
             {
+                int Neon_z = Old_Z;
                 for (int l = Old_x - 2; l > New_x; l -= 2)
                 {
-                    int Neon_z = Old_Z;
                     if (mass[l - Neon_z, Old_y] == "\u265a " || mass[l - Neon_z, Old_y] == "\u265b " || mass[l - Neon_z, Old_y] == "\u265c " || mass[l - Neon_z, Old_y] == "\u265d " || mass[l - Neon_z, Old_y] == "\u265e " || mass[l - Neon_z, Old_y] == "\u265f " || mass[l - Neon_z, Old_y] == "\u2654 " || mass[l - Neon_z, Old_y] == "\u2655 " || mass[l - Neon_z, Old_y] == "\u2656 " || mass[l - Neon_z, Old_y] == "\u2657 " || mass[l - Neon_z, Old_y] == "\u2658 " || mass[l - Neon_z, Old_y] == "\u2659 ")
                     {
                         return false;
@@ -2395,11 +2398,12 @@ namespace ZMEIKKA
                     Neon_z--;
                 }
             }
-            else if (New_y - Old_y > 0)
+            if (New_y - Old_y > 0)
             {
+                int Neon_z = Old_x - Old_Z;
                 for (int l = Old_y + 1; l < New_y; l ++)
                 {
-                    int Neon_z = Old_x - Old_Z;
+                    
                     if (mass[Neon_z, l] == "\u2654 " || mass[Neon_z, l] == "\u2655 " || mass[Neon_z, l] == "\u2656 " || mass[Neon_z, l] == "\u2657 " || mass[Neon_z, l] == "\u2658 " || mass[Neon_z, l] == "\u2659 " || mass[Neon_z, l] == "\u265a " || mass[Neon_z, l] == "\u265b " || mass[Neon_z, l] == "\u265c " || mass[Neon_z, l] == "\u265d " || mass[Neon_z, l] == "\u265e " || mass[Neon_z, l] == "\u265f ")
                     {
                         return false;
@@ -2408,9 +2412,9 @@ namespace ZMEIKKA
             }
             else if (New_y - Old_y < 0)
             {
+                int Neon_z = Old_x - Old_Z;
                 for (int l = Old_y - 1; l > New_y; l--)
                 {
-                    int Neon_z = Old_x - Old_Z;
                     if (mass[Neon_z, l] == "\u265F " || mass[Neon_z, l] == "\u265a " || mass[Neon_z, l] == "\u265b " || mass[Neon_z, l] == "\u265c " || mass[Neon_z, l] == "\u265d " || mass[Neon_z, l] == "\u265e " || mass[Neon_z, l] == "\u2654 " || mass[Neon_z, l] == "\u2655 " || mass[Neon_z, l] == "\u2656 " || mass[Neon_z, l] == "\u2657 " || mass[Neon_z, l] == "\u2658 " || mass[Neon_z, l] == "\u2659 ")
                     {
                         return false;
