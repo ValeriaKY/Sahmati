@@ -16,10 +16,10 @@ namespace ZMEIKKA
             Osnova XYI = new Osnova();
            do
            {
-             XYI.Figura_vibor();
+                XYI.Figura_vibor();
                 XYI.AI_Figura_vibor();
                 XYI.Ender_mir();
-           } while (true);
+           } while (XYI.end);
         }
     }
 }
