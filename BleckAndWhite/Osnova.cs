@@ -21,7 +21,6 @@ namespace ZMEIKKA
         };
         ConsoleKeyInfo mKey;
         private int x = 0, y = 0;
-       // int i = 0;
         int Z = 0;
         int G = 0;
         Random rand = new Random();
@@ -1153,6 +1152,7 @@ namespace ZMEIKKA
             {
                 Console.SetCursorPosition(0, 8);
                 Console.WriteLine("Конец игры вы проиграли");
+                end = false;
             }
             for (int i = 0; i < 8; i++)
             {
@@ -1178,6 +1178,7 @@ namespace ZMEIKKA
             {
                 Console.SetCursorPosition(0, 8);
                 Console.WriteLine("Конец игры вы победили");
+                end = false;
             }
         }
         private bool Vacsina(int AI_x, int AI_y, int AI_reserve)
